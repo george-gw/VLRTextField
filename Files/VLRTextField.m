@@ -170,7 +170,7 @@
                                                                  self.floatingLabelYPadding + FLOATING_ERROR_MESSAGE_VIEW_ANIMATION_Y,
                                                                  CGRectGetWidth(self.frame),
                                                                  CGRectGetHeight(self.floatingLabel.frame))];
-    errorMessageView.backgroundColor = self.superview.backgroundColor ? : self.backgroundColor;
+    errorMessageView.backgroundColor = self.backgroundColor;
     errorMessageView.text            = error.localizedDescription;
     errorMessageView.textColor       = self.floatingLabelActiveUnvalidTextColor;
     errorMessageView.font            = self.floatingLabel.font;
@@ -270,7 +270,7 @@
 
 - (CGRect)applyOffsetOnTextRectIfNeeded:(CGRect)rect
 {
-    if (self.userInteractionEnabled) {
+    if (([self.text length] || self.errorLabel) && self.userInteractionEnabled) {
         CGFloat topInset = ceilf(self.floatingLabel.font.lineHeight + self.placeholderYPadding);
         topInset = MIN(topInset, [self maxTopInset]);
         rect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(topInset, 0.0f, 0.0f, 0.0f));
@@ -279,7 +279,7 @@
 }
 
 - (CGRect) applyOffsetOnEditingTextRectIfNeeded:(CGRect)rect {
-    if (self.userInteractionEnabled) {
+    if (([self.text length] || self.errorLabel) && self.userInteractionEnabled) {
         CGFloat topInset = ceilf(self.floatingLabel.font.lineHeight + self.placeholderYPadding);
         topInset = MIN(topInset, [self maxTopInset]);
         rect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(topInset, 0.0f, 0.0f, 0.0f));
