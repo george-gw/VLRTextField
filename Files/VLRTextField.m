@@ -279,7 +279,7 @@
 }
 
 - (CGRect)applyOffsetOnEditingTextRectIfNeeded:(CGRect)rect {
-    if (self.applyTextOffsetOnEditing && (self.userInteractionEnabled && [self.text length] || self.errorLabel)) {
+    if (self.applyTextOffsetOnEditing && (self.userInteractionEnabled && ([self.text length] || self.errorLabel))) {
         CGFloat topInset = ceilf(self.floatingLabel.font.lineHeight + self.placeholderYPadding);
         topInset = MIN(topInset, [self maxTopInset]);
         rect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(topInset, 0.0f, 0.0f, 0.0f));
